@@ -160,8 +160,12 @@ export default class AbstractButton<P: Props, S: *> extends Component<P, S> {
      * @returns {string}
      */
     _getIconName() {
-        return (this._isToggled() ? this.toggledIconName : this.iconName)
-            || this.iconName;
+        const { showLabel } = this.props;
+
+        return (
+            this._isToggled() && !showLabel
+                ? this.toggledIconName : this.iconName
+        ) || this.iconName;
     }
 
     /**
